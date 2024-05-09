@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Page d'accueil {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<header>
+    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/> 
+<nav> 
+    <ul class="nav_links">
+        <li> Historique </li>
+</nav> 
+    <a class="cta" href="#"> <button class="button-85" role="button"> Mon compte </button> </a> 
+</header>
+
+<section id="quizz">
+    <h1 style="text-align:center" class="section_title"> Testez votre culture </h1>
+<div class="images">
+    <ul>
+        <li class="cat"> 
+        <div>
+            <img src="{{ asset('images/harrypotter.jpeg') }}" alt="Harry potter" class="img_cat"> 
+        </div>
+        <span> HARRY POTTER </span>
+        <a href="#"> FAIRE LE TEST </a>
+        </li>
+
+        <li class="cat"> 
+        <div>
+            <img src="{{ asset('images/harrypotter.jpeg') }}" alt="Harry potter" class="img_cat"> 
+        </div>
+        <span> HARRY POTTER </span>
+        <a href="#"> FAIRE LE TEST </a>
+        </li>
+
+        <li class="cat"> 
+        <div>
+            <img src="{{ asset('images/harrypotter.jpeg') }}" alt="Harry potter" class="img_cat"> 
+        </div>
+        <span> HARRY POTTER </span>
+        <a href="#"> FAIRE LE TEST </a>
+        </li>
+
+        <li class="cat"> 
+        <div>
+            <img src="{{ asset('images/harrypotter.jpeg') }}" alt="Harry potter" class="img_cat"> 
+        </div>
+        <span> HARRY POTTER </span>
+        <a href="#"> FAIRE LE TEST </a>
+        </li>
+        
+        <li class="cat"> 
+        <div>
+            <img src="{{ asset('images/harrypotter.jpeg') }}" alt="Harry potter" class="img_cat"> 
+        </div>
+        <span> HARRY POTTER </span>
+        <a href="#"> FAIRE LE TEST </a>
+        </li>
+
+        <li class="cat"> 
+        <div>
+            <img src="{{ asset('images/harrypotter.jpeg') }}" alt="Harry potter" class="img_cat"> 
+        </div>
+        <span> HARRY POTTER </span>
+        <a href="#"> FAIRE LE TEST </a>
+        </li>
+    </ul>
+
+
+</div>
+</section>
+
+{% endblock %}
