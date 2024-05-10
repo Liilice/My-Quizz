@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\QuestionRepository;
+use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +11,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Question;
 use App\Entity\Reponse;
+use App\Entity\Categorie;
+
 
 
 
@@ -24,6 +27,22 @@ class QuizzController extends AbstractController
             $questionId = $question->getId();
             $arrayReponse[] = [$question,$entityManager->getRepository(Reponse::class)->findAllByIdQuestion($questionId)];
         }
-        return $this->render('quizz/show.html.twig', ['arrayReponse'=>$arrayReponse]);
+        return $this->render('quizz/show.html.twig', ['arrayReponse'=>$arrayReponse, "id"=>$id]);
+    }
+
+    #[Route('/traitementReponse/{id}', name: 'traitementReponse')]
+    public function traitementReponse(Request $request, EntityManagerInterface $entityManager, int $id){
+        $categorie = $entityManager->getRepository(Categorie::class)->findNameCategorie($id);
+        $categorieName = $categorie[0]->getName();
+        $arrayReponse = $request->request->all();
+        $totalQuestion = count($arrayReponse);
+        $count = 0;
+        foreach($arrayReponse as $reponse){
+            $result = $entityManager->getRepository(Reponse::class)->findTrueReponse($reponse);
+            if($result[0]->isReponseExpected() == true){
+                $count ++;
+            }
+        }
+        return $this->render('quizz/showResult.html.twig', ['count'=>$count, "totalQuestion"=>$totalQuestion, "categorieName"=>$categorieName]);
     }
 }

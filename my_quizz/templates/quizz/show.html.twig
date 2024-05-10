@@ -9,16 +9,18 @@
 </style>
 
 <div class="example-wrapper">
-     <ul>
-        {% for reponse in arrayReponse %}
-            <li>{{ reponse[0].question }}</li>
-            {% for item in reponse[1] %}
-                <input type="radio" id="" name="{{reponse[0].id}}" value=""  />
-                <label for="">{{item.reponse}}</label>
-                </br>
+    <form method="post" action="{{  path('traitementReponse', {'id': id}) }}">
+        <ul>
+            {% for reponse in arrayReponse %}
+                <li>{{ reponse[0].question }}</li>
+                {% for item in reponse[1] %}
+                    <input type="radio" id="{{item.reponse}}" name="{{reponse[0].id}}" value="{{item.reponse}}"  required/>
+                    <label for="{{item.reponse}}">{{item.reponse}}</label>
+                    </br>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-    </ul>
-    <button>Resultat</button>
+        </ul>
+        <button  type="submit">Résultat</button>
+    </form>
 </div>
 {% endblock %}
