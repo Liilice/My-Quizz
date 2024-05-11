@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Historique quizz {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<header>
+    <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+    
+    <a class="cta" href="#"> <button class="button-85" role="button"> Mon compte </button> </a> 
+</header>
+
+<section id="quizz">
+    <h1 style="text-align:center" class="section_title"> Vos quizz fait </h1>
+<div class="images">
+    <ul>
+        {% for key, value in result%}
+            <li>{{ (key) }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+</div>
+</section>
+
+{% endblock %}
