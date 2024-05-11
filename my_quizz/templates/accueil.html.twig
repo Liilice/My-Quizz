@@ -10,10 +10,10 @@
 {% block body %}
 
 <header>
-    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/> 
+    <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
 <nav> 
     <ul class="nav_links">
-        <li> Historique </li>
+    <a href="{{ url('historique.show')}}"><li> Historique </li></a>
 </nav> 
     <a class="cta" href="#"> <button class="button-85" role="button"> Mon compte </button> </a> 
 </header>
