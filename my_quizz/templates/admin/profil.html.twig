@@ -24,27 +24,16 @@
     <h1>Hello {{ app.user.email }}</h1>
     </br>
     </br>
-     <form >
-        <h2> Update Password </h2>
-        <div>
-            <label for="current_password">current_password</label>
-            <input type="text" id="current_password">
-        </div>
-
-        <div>
-            <label for="new_password">new_password</label>
-            <input type="text" id="new_password">
-        </div>
-
-        <button type="submit">Modifier</button>
-    </form>
+    {% include 'partials/flash.html.twig' %}
+    <h2> Update Password </h2>
+    {{ form(formPassword) }}
     </br>
     </br>
     <form >
         <h2> Update email </h2>
         <div>
             <label for="editEmail">editEmail</label>
-            <input type="text" id="editEmail">
+            <input type="text" id="editEmail" name="editEmail">
         </div>
         <button type="submit">Modifier</button>
     </form>
