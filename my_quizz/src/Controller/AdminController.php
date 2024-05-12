@@ -41,6 +41,7 @@ class AdminController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'Your password has been modified.');
         }
        return $this->render('admin/profil.html.twig', ['formPassword'=>$formPassword]);
     }

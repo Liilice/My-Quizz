@@ -24,6 +24,7 @@
     <h1>Hello {{ app.user.email }}</h1>
     </br>
     </br>
+    {% include 'partials/flash.html.twig' %}
     <h2> Update Password </h2>
     {{ form(formPassword) }}
     </br>
