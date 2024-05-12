@@ -20,13 +20,21 @@ class HomeController extends AbstractController {
     public function showHistory(Request $request): Response{
         $array=$request->cookies->all();
         $result = [];
-        foreach($array as $key=>$value){
-            $cookie_value = urldecode($key);
-            if(str_contains($cookie_value, "\n")){
-                $name = str_replace("\n", "", $cookie_value);
-                $result[$name] = $value;
-            }else{
-                $result[$cookie_value] = $value;
+        if($this->getUser()){
+            $result = [];
+        }else{
+            $array=$request->cookies->all();
+            $result = [];
+            foreach($array as $key=>$value){
+                $cookie_value = urldecode($key);
+                if($key != "PHPSESSID"){
+                    if(str_contains($cookie_value, "\n")){
+                        $name = str_replace("\n", "", $cookie_value);
+                        $result[$name] = $value;
+                    }else{
+                        $result[$cookie_value] = $value;
+                    }
+                }
             }
         }
         return $this->render('historique.html.twig', ['result'=>$result]);
