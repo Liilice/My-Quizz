@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-class Users implements UserInterface, PasswordAuthenticatedUserInterface
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,14 +33,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $pseudo = null;
-
     #[ORM\Column]
-    private ?bool $isAdmin = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $lastLogin = null;
+    private bool $isVerified = false;
 
     public function getId(): ?int
     {
@@ -116,38 +111,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getPseudo(): ?string
+    public function isVerified(): bool
     {
-        return $this->pseudo;
+        return $this->isVerified;
     }
 
-    public function setPseudo(string $pseudo): static
+    public function setVerified(bool $isVerified): static
     {
-        $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    public function isAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setAdmin(bool $isAdmin): static
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
-    public function getLastLogin(): ?\DateTimeInterface
-    {
-        return $this->lastLogin;
-    }
-
-    public function setLastLogin(\DateTimeInterface $lastLogin): static
-    {
-        $this->lastLogin = $lastLogin;
+        $this->isVerified = $isVerified;
 
         return $this;
     }
