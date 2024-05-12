@@ -19,4 +19,10 @@ class AdminController extends AbstractController
             false => $this->render('admin/please-verify-email.html.twig'),
         };
     }
+    
+    #[Route('/admin/profil', name: 'profil')]
+    public function profil(): Response
+    {
+       return $this->render('admin/profil.html.twig');
+    }
 }

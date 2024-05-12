@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Profil Setting {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<header>
+    <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+    <ul class="nav_links">
+    <a href="{{ url('historique.show')}}"><li> Historique </li></a>
+</nav> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a> 
+</header>
+
+<section id="quizz">
+    <h1 style="text-align:center" class="section_title"> Settings </h1>
+<div class="images">
+    <h1>Hello {{ app.user.email }}</h1>
+    </br>
+    </br>
+     <form >
+        <h2> Update Password </h2>
+        <div>
+            <label for="current_password">current_password</label>
+            <input type="text" id="current_password">
+        </div>
+
+        <div>
+            <label for="new_password">new_password</label>
+            <input type="text" id="new_password">
+        </div>
+
+        <button type="submit">Modifier</button>
+    </form>
+    </br>
+    </br>
+    <form >
+        <h2> Update email </h2>
+        <div>
+            <label for="editEmail">editEmail</label>
+            <input type="text" id="editEmail">
+        </div>
+        <button type="submit">Modifier</button>
+    </form>
+</div>
+</section>
+
+{% endblock %}
