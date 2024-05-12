@@ -36,7 +36,6 @@ class QuizzController extends AbstractController
     public function traitementReponse(Request $request, EntityManagerInterface $entityManager, int $id){
         $categorie = $entityManager->getRepository(Categorie::class)->findNameCategorie($id);
         $categorieName = $categorie[0]->getName();
-        // dd($categorieName);
         $arrayReponse = $request->request->all();
         $totalQuestion = count($arrayReponse);
         $count = 0;
@@ -46,11 +45,13 @@ class QuizzController extends AbstractController
                 $count ++;
             }
         }
-        // setcookie($categorieName,$count,time()+60*60*24*7, '/' );
-        $response = new Response();
-        $cookie = new Cookie(urlencode($categorieName), $count."/".$totalQuestion, time()+60*60*24*7, partitioned: true);
-        $response->headers->setCookie($cookie);
-        $response->sendHeaders();
+        if($this->getUser()){
+        }else{
+            $response = new Response();
+            $cookie = new Cookie(urlencode($categorieName), $count."/".$totalQuestion, time()+60*60*24*7, partitioned: true);
+            $response->headers->setCookie($cookie);
+            $response->sendHeaders();
+        }
         return $this->render('quizz/showResult.html.twig', ['count'=>$count, "totalQuestion"=>$totalQuestion, "categorieName"=>$categorieName]);
     }
 
