@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\EmailEditType;
 use App\Form\PassewordEditType;
+use App\Form\SetAdminType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -41,6 +42,7 @@ class AdminController extends AbstractController
     public function profil(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+
         $formPassword = $this->createForm(PassewordEditType::class, $user);
         $formPassword->handleRequest($request);
         if($formPassword->isSubmitted() && $formPassword->isValid()){
@@ -73,7 +75,18 @@ class AdminController extends AbstractController
             return $this->render('admin/please-verify-new-email.html.twig');
         }
 
-       return $this->render('admin/profil.html.twig', ['formPassword'=>$formPassword, 'formEmail'=>$formEmail]);
+        $formSetAdmin = $this->createForm(SetAdminType::class);
+        $formSetAdmin->handleRequest($request);
+        if($formSetAdmin->isSubmitted() && $formSetAdmin->isValid()){
+            // dd($formSetAdmin->get('roles')->getData()[0]);
+            $user->setRoles($formSetAdmin->get('roles')->getData());
+            // $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('message', 'role admins');
+        }
+
+       return $this->render('admin/profil.html.twig', ['formPassword'=>$formPassword, 'formEmail'=>$formEmail, 'formSetAdmin'=>$formSetAdmin ]);
     }
 
     #[Route('admin/please-verify-new-email.html.twig')]

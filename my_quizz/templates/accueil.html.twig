@@ -16,6 +16,9 @@
     <a href="{{ url('historique.show')}}"><li> Historique </li></a>
 </nav> 
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-85" role="button">Admin</button> </a> 
+        {% endif %}
         <a class="cta" href="{{ path('profil') }}"> <button class="button-85" role="button">Mon compte</button> </a> 
         <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a> 
     {% else %}

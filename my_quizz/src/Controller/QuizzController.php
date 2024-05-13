@@ -46,6 +46,7 @@ class QuizzController extends AbstractController
             }
         }
         if($this->getUser()){
+            dd('hello');
         }else{
             $response = new Response();
             $cookie = new Cookie(urlencode($categorieName), $count."/".$totalQuestion, time()+60*60*24*7, partitioned: true);
