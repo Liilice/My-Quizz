@@ -20,14 +20,14 @@
 </header>
 
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Settings </h1>
+    <h1 style="text-align:center" class="section_title">  Paramètres </h1>
 <div class="images">
-    <h1>Hello {{ app.user.email }}</h1>
+    <h1> Hello {{ app.user.email }} ! </h1>
     </br>
     </br>
     {% include 'partials/flash.html.twig' %}
-    <h2> Update Password </h2>
-    {{ form(formPassword) }}
+    <h2 id="dofus"> Update Password </h2>
+    {{ form(formPassword) }} 
     </br>
     </br>
     <form >
