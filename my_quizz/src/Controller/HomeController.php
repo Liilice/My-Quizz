@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\QuizzPassed;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 class HomeController extends AbstractController {
 
@@ -17,11 +20,21 @@ class HomeController extends AbstractController {
     }
 
     #[Route("/historique",name : "historique.show")]
-    public function showHistory(Request $request): Response{
+    public function showHistory(Request $request, EntityManagerInterface $entityManager): Response{
         $array=$request->cookies->all();
         $result = [];
         if($this->getUser()){
-            $result = [];
+            $user_id = $this->getUser()->getId();
+            $arrayQuizzPassByUser = $entityManager->getRepository(QuizzPassed::class)->findQuizzPassedByUser($user_id);
+            if(count($arrayQuizzPassByUser)>1){
+                foreach($arrayQuizzPassByUser as $value){
+                    $name = $value['categorie_name'];
+                    $result[$name] =$value['note'];
+                }
+            }else{
+                $name = $arrayQuizzPassByUser[0]->getCategorieName();
+                $result[$name] = $arrayQuizzPassByUser[0]->getNote();
+            }
         }else{
             $array=$request->cookies->all();
             $result = [];

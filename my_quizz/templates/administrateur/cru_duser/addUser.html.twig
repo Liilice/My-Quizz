@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil Setting {% endblock %}
+{% block title %} Admin dashboard {% endblock %}
 
 {% block stylesheets %}
 
@@ -11,19 +11,13 @@
 
 <header>
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+    <a class="cta" href="{{ url('app_administrateur') }}"> <button class="button-85" role="button">Dashboard Admin</button> </a> 
     <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a> 
 </header>
 
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Fonctionnalité </h1>
-<div class="images">
-    <h1>Hello {{ app.user.email }}</h1>
-    </br>
-    </br>
-    <a class="cta" href="{{ path('CrudUserIndex') }}"> <button class="button-85" role="button">CRUD user</button> </a> 
-    </br>
-    </br>
-</div>
+    <h1 style="text-align:center" class="section_title"> Dashboard add user </h1>
+    {{ form(form) }}
 </section>
 
 {% endblock %}

@@ -23,11 +23,9 @@
     <h1 style="text-align:center" class="section_title"> Vos quizz fait </h1>
 <div class="images">
     <ul>
-        {% if is_granted("IS_AUTHENTICATED_FULLY") is same as(false) %}
-            {% for key, value in result%}
-                <li>{{ (key) }}: {{ value }}</li>
-            {% endfor %}
-        {% endif %}
+        {% for key, value in result%}
+            <li>{{ (key) }}: {{ value }}</li>
+        {% endfor %} 
     </ul>
 </div>
 </section>
