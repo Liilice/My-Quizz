@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Question;
 use App\Entity\Reponse;
 use App\Entity\Categorie;
+use App\Entity\QuizzPassed;
 use Symfony\Component\HttpFoundation\Cookie;
 
 
@@ -46,7 +47,8 @@ class QuizzController extends AbstractController
             }
         }
         if($this->getUser()){
-            dd('hello');
+            $user_id = $this->getUser()->getId();
+            $entityManager->getRepository(QuizzPassed::class)->insertInto($user_id, $categorieName, $count);
         }else{
             $response = new Response();
             $cookie = new Cookie(urlencode($categorieName), $count."/".$totalQuestion, time()+60*60*24*7, partitioned: true);

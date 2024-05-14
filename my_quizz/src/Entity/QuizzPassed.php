@@ -16,11 +16,10 @@ class QuizzPassed
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $id_quizz = null;
+    #[ORM\Column(length: 255)]
+    private ?string $categorie_name = null;
 
     #[ORM\Column]
     private ?int $note = null;
@@ -33,26 +32,26 @@ class QuizzPassed
         return $this->id;
     }
 
-    public function getIdUser(): ?User
+    public function getUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?User $id_user): static
+    public function setUser(?User $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getIdQuizz(): ?Categorie
+    public function getCategorieName(): ?string
     {
-        return $this->id_quizz;
+        return $this->categorie_name;
     }
 
-    public function setIdQuizz(?Categorie $id_quizz): static
+    public function setCategorieName(string $categorie_name): static
     {
-        $this->id_quizz = $id_quizz;
+        $this->categorie_name = $categorie_name;
 
         return $this;
     }
