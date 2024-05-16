@@ -26,14 +26,18 @@ class HomeController extends AbstractController {
         if($this->getUser()){
             $user_id = $this->getUser()->getId();
             $arrayQuizzPassByUser = $entityManager->getRepository(QuizzPassed::class)->findQuizzPassedByUser($user_id);
-            if(count($arrayQuizzPassByUser)>1){
-                foreach($arrayQuizzPassByUser as $value){
-                    $name = $value['categorie_name'];
-                    $result[$name] =$value['note'];
-                }
+            if(empty($arrayQuizzPassByUser)){
             }else{
-                $name = $arrayQuizzPassByUser[0]->getCategorieName();
-                $result[$name] = $arrayQuizzPassByUser[0]->getNote();
+                if(count($arrayQuizzPassByUser)>1){
+                    foreach($arrayQuizzPassByUser as $value){
+                        $name = $value['categorie_name'];
+                        $result[$name] =$value['note'];
+                    }
+                }else{
+
+                    $name = $arrayQuizzPassByUser[0]['categorie_name'];
+                    $result[$name] = $arrayQuizzPassByUser[0]['note'];
+                }
             }
         }else{
             $array=$request->cookies->all();
