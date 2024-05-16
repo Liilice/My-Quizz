@@ -75,18 +75,18 @@ class AdminController extends AbstractController
             return $this->render('admin/please-verify-new-email.html.twig');
         }
 
-        // $formSetAdmin = $this->createForm(SetAdminType::class);
-        // $formSetAdmin->handleRequest($request);
-        // if($formSetAdmin->isSubmitted() && $formSetAdmin->isValid()){
-        //     // dd($formSetAdmin->get('roles')->getData()[0]);
-        //     $user->setRoles($formSetAdmin->get('roles')->getData());
-        //     // $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->persist($user);
-        //     $entityManager->flush();
-        //     $this->addFlash('message', 'role admins');
-        // }
+//         $formSetAdmin = $this->createForm(SetAdminType::class);
+//         $formSetAdmin->handleRequest($request);
+//         if($formSetAdmin->isSubmitted() && $formSetAdmin->isValid()){
+//             // dd($formSetAdmin->get('roles')->getData()[0]);
+//             $user->setRoles($formSetAdmin->get('roles')->getData());
+//             // $entityManager = $this->getDoctrine()->getManager();
+//             $entityManager->persist($user);
+//             $entityManager->flush();
+//             $this->addFlash('message', 'role admins');
+//         }
 
-       return $this->render('admin/profil.html.twig', ['formPassword'=>$formPassword, 'formEmail'=>$formEmail ]);
+       return $this->render('admin/profil.html.twig', ['formPassword'=>$formPassword, 'formEmail'=>$formEmail]);
     }
 
     #[Route('admin/please-verify-new-email.html.twig')]
