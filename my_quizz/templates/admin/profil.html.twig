@@ -13,20 +13,21 @@
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
 <nav> 
     <ul class="nav_links">
-    <a href="{{ url('historique.show')}}"><li> Historique </li></a>
+    <a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
 </nav> 
-    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a> 
+<a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a>  
 </header>
 
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Settings </h1>
+    <h1 style="text-align:center" class="section_title">  Paramètres </h1>
 <div class="images">
-    <h1>Hello {{ app.user.email }}</h1>
+    <h1> Hello {{ app.user.email }} ! </h1>
     </br>
     </br>
     {% include 'partials/flash.html.twig' %}
-    <h2> Update Password </h2>
-    {{ form(formPassword) }}
+    <h2 id="dofus"> Update Password </h2>
+    {{ form(formPassword) }} 
     </br>
     </br>
     <h2> Update email </h2>

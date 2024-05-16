@@ -13,14 +13,14 @@
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
     
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-        <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a> 
+        <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
     {% else %}
-        <a class="cta" href="{{ path('app_register') }}"> <button class="button-85" role="button">S'inscrire</button> </a> 
-        <a class="cta" href="{{ path('app_login') }}"> <button class="button-85" role="button">Se connecter</button> </a> 
+    <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a> 
+    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
     {% endif %}
 </header>
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Vos quizz fait </h1>
+    <h1 style="text-align:center" class="section_title"> Historique des quizz effectués : </h1>
 <div class="images">
     <ul>
         {% for key, value in result%}
