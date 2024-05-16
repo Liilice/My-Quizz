@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     {% endblock %}
 
-{% block title %} S'enregistrer {% endblock %}
+{% block title %} Se connecter {% endblock %}
 
 
 {% block body %}
@@ -23,7 +23,7 @@
     <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
     <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
 {% else %}
-    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
+    <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a>  
 {% endif %}
 
 </header>
@@ -40,7 +40,7 @@
     {% endif %}
 
     <div class="formulaire">
-    <h1 class="h3 mb-3 font-weight-normal" id="title"> Connexion au site </h1>
+    <h1 class="h3 mb-3 font-weight-normal" id="title"> Connexion </h1>
     
     <label for="inputEmail"> </label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="E-mail" required autofocus>
