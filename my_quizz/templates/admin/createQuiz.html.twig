@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Profil Setting {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<header>
+    <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+    <ul class="nav_links">
+    <a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
+</nav> 
+    <a class="cta" href="{{ path('app_quizz') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a>  
+</header>
+
+<section id="quizz">
+    <h1 style="text-align:center" class="section_title">  Creation d'un quiz </h1>
+<div class="images">
+    <h1> Hello {{ app.user.email }} ! </h1>
+    </br>
+    </br>
+    <form method="post" action="{{  path('traitementCreationQuizUser') }}" style="text-align:center">
+            <div>
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name"  required/>
+            </div>
+            </br>
+
+            {% for i in 1..10 %}
+                <div>
+                    <div>
+                        <label for="question{{ i }}">Question {{ i }}</label>
+                        <input type="text" id="question{{ i }}" name="question{{ i }}"  />
+                    </div>
+                    <div>
+                        {% for x in 1..3 %}
+                            <label for="reponse{{ i }}_{{ x }}">Reponse {{ x }}</label>
+                            <input type="text" id="reponse_{{ i }}_{{ x }}" name="reponse_{{ i }}_{{ x }}"  />
+                        {% endfor %}
+                        </br>
+                        </br>
+                        </br>
+                    </div>
+                </div>
+            {% endfor %}
+            <button  type="submit">Creer le quiz</button>
+        </form>
+</div>
+</section>
+
+{% endblock %}

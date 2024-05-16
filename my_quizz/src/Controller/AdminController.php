@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
+use App\Entity\Question;
+use App\Entity\Reponse;
 use App\Form\EmailEditType;
 use App\Form\PassewordEditType;
 use App\Form\SetAdminType;
@@ -110,6 +113,55 @@ class AdminController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('profil');
+    }
+
+    #[Route('/admin/createQuiz', name: 'app_quizz')]
+    public function showCreateQuizPage(): Response
+    {
+        return $this->render('admin/createQuiz.html.twig');
+    }
+
+    #[Route('/traitementCreationQuizUser', name: 'traitementCreationQuizUser')]
+    public function creerQuizz(Request $request, EntityManagerInterface $entityManager)
+    {
+        $formData = $request->request->all();
+        $categorie = new Categorie();
+        $categorie->setName($formData['name']);
+        $entityManager->persist($categorie);
+        $entityManager->flush($categorie);
+        $categorieID = $categorie->getId();
+        array_shift($formData);
+        $arr = "";
+        foreach($formData as $key => $value){
+            $question = new Question();
+            $questionId = $question->getId();
+            if(strpos($key, 'question') === 0){
+                $question->setIdCategorie($categorieID);
+                $question->setQuestion($value);
+                $entityManager->persist($question);
+                $entityManager->flush($question);
+                $questionId = $question->getId();
+                $arr = $questionId."_".$key;
+            }
+            if (strpos($key, 'reponse') === 0 ) {
+                $reponse = new Reponse();
+                $array = explode("n", $arr);
+                $getId = explode("_", $arr)[0];
+                $check = explode("_", $key);
+                if($check[1] == $array[1]){
+                    $reponse->setIdQuestion($getId);
+                    $reponse->setReponse($value);
+                    if(str_ends_with( $key,'_1')){
+                        $reponse->setReponseExpected('1');
+                    }else{
+                        $reponse->setReponseExpected('0');
+                    }
+                }
+                $entityManager->persist($reponse);
+                $entityManager->flush($reponse);
+            }
+        }
+        return $this->redirectToRoute('home');
     }
 
 }
