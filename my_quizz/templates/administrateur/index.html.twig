@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil Setting {% endblock %}
+{% block title %} Panneau d'administration {% endblock %}
 
 {% block stylesheets %}
 
@@ -15,9 +15,8 @@
     </header>
 
     <section id="quizz">
-        <h1 style="text-align:center" class="section_title"> Fonctionnalité </h1>
+        <h1 style="text-align:center" class="section_title"> Administration </h1>
         <div class="images">
-            <h1>Hello {{ app.user.email }}</h1>
             </br>
             </br>
             <a class="cta" href="{{ url('CrudUserIndex') }}"> <button class="button-85" role="button">CRUD user</button> </a>

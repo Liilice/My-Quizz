@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Historique quizz {% endblock %}
+{% block title %} Historique des quizz {% endblock %}
 
 {% block stylesheets %}
 
@@ -8,6 +8,18 @@
 
 
 {% block body %}
+
+<style>
+    .histo ul { display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom : 20px; }
+    .histo { margin: 20px auto; padding: 0 8%; }
+    li { padding: 5px } 
+
+</style>
 
 <header>
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
@@ -25,11 +37,11 @@
     {% endif %}
 </header>
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Historique des quizz effectués : </h1>
-<div class="images">
+    <h1 style="text-align:center" class="section_title"> Historique des quizz effectués  </h1>
+<div class="histo">
     <ul>
         {% for key, value in result%}
-            <li>{{ (key) }}: {{ value }}</li>
+            <li>{{ (key) }} : {{ value }}/10</li>
         {% endfor %} 
     </ul>
 </div>
