@@ -21,10 +21,7 @@
         {{ form(form) }}
         </br>
         </br>
-        {% if is_granted('ROLE_ADMIN') %}
-        {% else %}
-            {{ form(formSetAdmin) }}
-        {% endif %}
+        {{ form(formSetAdmin) }}
     </div>
 </section>
 

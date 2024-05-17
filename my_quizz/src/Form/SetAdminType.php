@@ -21,7 +21,7 @@ class SetAdminType extends AbstractType
                 'label' => 'Rôles' 
             ])
             ->add('save', SubmitType::class, [
-                'label'=>'DEVENIR ADMIN'
+                'label'=>'RENDRE ADMIN'
             ])
         ;
     }
