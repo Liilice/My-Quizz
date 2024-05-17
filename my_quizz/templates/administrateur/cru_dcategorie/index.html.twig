@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Admin dashboard {% endblock %}
+{% block title %} Quizz dashboard {% endblock %}
 
 {% block stylesheets %}
 
@@ -8,6 +8,27 @@
 
 
 {% block body %}
+<style>
+    #title{
+    font-size: 7vh;
+    padding-top: 20px;
+    text-align: center;
+    color: #e76f51;
+}
+    .histo{ display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom : 20px;
+    margin-top: 20px }
+    
+    li { padding: 7px } 
+    body > div.histo > a > button {
+        margin-bottom: 30px;}
+    #main { background-color: #52BE80; 
+}
+</style>
 
     <header>
         <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>
@@ -16,17 +37,22 @@
     </header>
 
     <section id="quizz">
-        <h1 style="text-align:center" class="section_title"> Dashboard all categorie </h1>
+        <h1 style="text-align:center" class="section_title" id="title"> Gestionnaire de quizz </h1>
     </section>
-    <a href="{{ url('addCategorie') }}"><button>Add Categorie</button></a>
+
+    <div class="histo">
+
+    <a href="{{ url('addCategorie') }}"><button id="main"> Créer un quizz </button></a>
+    
     <ul>
         {% for categorie in categories %}
             <li>
                 <span>{{categorie.name}}</span>
-                <a href="{{ url('editCategorie', {id : categorie.id} )}}"><button>Update Categorie</button></a>
-                <a href="{{ url('deleteCategorie', {id : categorie.id} )}}"><button>Delete Categorie</button></a>
+                <a href="{{ url('editCategorie', {id : categorie.id} )}}"><button> Modifier le quizz</button></a>
+                <a href="{{ url('deleteCategorie', {id : categorie.id} )}}"><button> Supprimer </button></a>
             </li>
         {% endfor %}
     </ul>
+</div>
 
 {% endblock %}
