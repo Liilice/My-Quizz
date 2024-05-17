@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil Setting {% endblock %}
+{% block title %} Création d'un quizz {% endblock %}
 
 {% block stylesheets %}
 
@@ -15,14 +15,18 @@
     <ul class="nav_links">
     <a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
 </nav> 
-    <a class="cta" href="{{ path('app_quizz') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a> 
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+            <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+        {% endif %}
     <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a>  
 </header>
 
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title">  Creation d'un quiz </h1>
+    <h1 style="text-align:center" class="section_title">  Créez votre quizz !  </h1>
 <div class="images">
-    <h1> Hello {{ app.user.email }} ! </h1>
     </br>
     </br>
     <form method="post" action="{{  path('traitementCreationQuizUser') }}" style="text-align:center">

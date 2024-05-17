@@ -16,6 +16,7 @@
     <a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
 </nav> 
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <a class="cta" href="{{ path('app_quizz') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a>
         {% if is_granted('ROLE_ADMIN') %}
             <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
         {% endif %}
