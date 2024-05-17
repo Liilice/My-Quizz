@@ -24,7 +24,7 @@ class CRUDcategorieController extends AbstractController
     }
 
     #[Route('/administrateur/c/r/u/dcategorie/addCategorie', name: 'addCategorie')]
-    public function addUser(Request $request,  EntityManagerInterface $entityManager): Response
+    public function addCategorie(Request $request,  EntityManagerInterface $entityManager): Response
     {
         $categorie = new Categorie();
         $form = $this->createForm(AdminAddCategorieType::class,  $categorie);
@@ -39,8 +39,10 @@ class CRUDcategorieController extends AbstractController
     }
 
     #[Route('/administrateur/c/r/u/dcategorie/editCategorie/{id}', name: 'editCategorie')]
-    public function editUser(Request $request, EntityManagerInterface $entityManager, Categorie $categorie, int $id): Response
+    public function editCategorie(Request $request, EntityManagerInterface $entityManager, Categorie $categorie, int $id): Response
     {
+        $questions = $entityManager->getRepository(Question::class)->findAllByIdCategorie($id);
+        // dd($questions);
         $form = $this->createForm(AdminEditCategorieType::class, $categorie);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -49,11 +51,11 @@ class CRUDcategorieController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('CrudCategorieIndex');
         }
-        return $this->render('administrateur/cru_dcategorie/editCategorie.html.twig', ['id'=>$id, 'form'=>$form]);
+        return $this->render('administrateur/cru_dcategorie/editCategorie.html.twig', ['id'=>$id, 'form'=>$form, 'questions'=>$questions]);
     }
 
     #[Route('/administrateur/c/r/u/dcategorie/deleteCategorie/{id}', name: 'deleteCategorie')]
-    public function deleteUser(Categorie $categorie, EntityManagerInterface $entityManager): Response
+    public function deleteCategorie(Categorie $categorie, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($categorie);
         $entityManager->flush();

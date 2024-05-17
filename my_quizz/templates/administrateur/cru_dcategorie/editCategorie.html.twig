@@ -15,14 +15,23 @@
         <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a>
     </header>
 
-    <section id="quizz">
+    <section id="quizz" >
         <h1 style="text-align:center" class="section_title"> Edit categorie </h1>
         <div class="images">
             {{ form(form) }}
         </div>
         </br>
         </br>
-
+        <ul style="margin-left: 5rem">
+            {% for question in questions%}
+                <li>
+                    <span> {{question.question}}</span>
+                    <a href="{{ url('editQuestion', {id : question.id} )}}"><button>Update Question</button></a>
+                    <a href="{{ url('deleteQuestion', {id : question.id} )}}"><button>Delete Question</button></a>
+                </li>
+                </br>
+            {% endfor %}
+        </ul>
     </section>
 
 {% endblock %}
