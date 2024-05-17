@@ -8,6 +8,52 @@
 
 
 {% block body %}
+<style>
+    #title{
+    font-size: 7vh;
+    padding-top: 20px;
+    text-align: center;
+    color: #e76f51;
+}
+    .question {
+        margin-bottom: 20px;
+        font-size : 20px;
+        }
+    #quest { font-weight : bold; }
+    #quizz > div > form > div:nth-child(3) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(4) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(5) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(6) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(7) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(8) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(9) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(10) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(11) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+    #quizz > div > form > div:nth-child(12) > div:nth-child(2) > label:nth-child(1) {font-weight: bold; color : green}
+
+    #quizz > div > form > div:nth-child(3) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(4) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(5) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(6) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(7) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(8) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(9) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(10) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(11) > div:nth-child(2) > label:nth-child(3) {color : red}
+    #quizz > div > form > div:nth-child(12) > div:nth-child(2) > label:nth-child(3) {color : red}
+
+    #quizz > div > form > div:nth-child(3) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(4) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(5) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(6) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(7) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(8) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(9) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(10) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(11) > div:nth-child(2) > label:nth-child(5) {color : red}
+    #quizz > div > form > div:nth-child(12) > div:nth-child(2) > label:nth-child(5) {color : red}
+
+</style>
 
 <header>
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
@@ -25,7 +71,7 @@
 </header>
 
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title">  Créez votre quizz !  </h1>
+    <h1 style="text-align:center" class="section_title" id="title">  Créez votre quizz !  </h1>
 <div class="images">
     </br>
     </br>
@@ -38,8 +84,8 @@
 
             {% for i in 1..10%}
                 <div>
-                    <div>
-                        <label for="question{{ i }}">Question {{ i }}</label>
+                    <div class="question">
+                        <label for="question{{ i }}" id="quest">Question {{ i }}</label>
                         <input type="text" id="question{{ i }}" name="question{{ i }}"  required/>
                     </div>
                     <div>
@@ -53,7 +99,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <button  type="submit">Creer le quiz</button>
+            <button  type="submit">Créer le quizz </button>
         </form>
 </div>
 </section>

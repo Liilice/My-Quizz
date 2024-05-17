@@ -9,7 +9,8 @@
 
 {% block body %}
 <style>
-    button{ margin : 17px } 
+    button{ margin : 17px;} 
+    #main { background-color: #52BE80 }
     .spoon { font-weight: bold; }
     #title{
     font-size: 7vh;
@@ -17,7 +18,9 @@
     padding-bottom: 20px;
     text-align: center;
     color: #e76f51;
-}
+    }
+    .little{display: flex; justify-content: center; }
+
     </style>
 <header>
 <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
@@ -42,7 +45,9 @@
 <section id="quizz">
     <h1 style="text-align:center" class="section_title" id="title"> Gestion des utilisateurs </h1>
 </section>
-<a href="{{ url('addUser') }}"><button> Ajouter un nouveau membre </button></a>
+<div class="little">
+<a href="{{ url('addUser') }}"><button id="main"> Ajouter un nouveau membre </button></a>
+</div>
 <ul>
     {% for id, user  in users%}
         <li>

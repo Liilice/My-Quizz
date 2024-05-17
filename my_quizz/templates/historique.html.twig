@@ -18,6 +18,12 @@
     margin-bottom : 20px; }
     .histo { margin: 20px auto; padding: 0 8%; }
     li { padding: 5px } 
+    #title{
+    font-size: 7vh;
+    padding-top: 20px;
+    text-align: center;
+    color: #e76f51;
+}
 
 </style>
 
@@ -37,7 +43,7 @@
     {% endif %}
 </header>
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Historique des quizz effectués  </h1>
+    <h1 style="text-align:center" class="section_title" id="title"> Historique des quizz effectués  </h1>
 <div class="histo">
     <ul>
         {% for key, value in result%}
