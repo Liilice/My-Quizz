@@ -1,0 +1,36 @@
+
+
+#title{
+    font-size: 10vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #e76f51;
+}
+
+input{
+    text-align: center;
+}
+
+#inputEmail{
+    text-align: center;
+}
+
+.formulaire{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.btn{
+    display: block;
+    margin : auto;
+
+}
+
+.para{
+    display: block;
+    margin : auto;
+}
