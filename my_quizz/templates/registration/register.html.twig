@@ -1,25 +1,50 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    {% endblock %}
 
-{% block title %}Register{% endblock %}
+{% block title %} S'enregistrer {% endblock %}
 
 {% block body %}
+
+<header>
+<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+<ul class="nav_links">
+<a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
+</nav> 
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+    {% endif %}
+    <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
+{% else %}
+    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
+{% endif %}
+
+</header>
+
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <div class="formulaire">
+    <h1 id="title"> Inscription </h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.email, 
+        {label: 'E-mail '
+        }) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Mot de passe '
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn"> S'inscrire </button>
     {{ form_end(registrationForm) }}
-    <p>Already have an account ?</p>
-    <a href="{{ path('app_login') }}">Se connecter</a>
+    <p class="para"> Déjà membre ? <a href="{{ path('app_login') }}"> Se connecter </a></p>
+    </div>
 {% endblock %}

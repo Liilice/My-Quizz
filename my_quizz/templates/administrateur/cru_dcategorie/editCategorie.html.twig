@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Admin dashboard Edit {% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block body %}
+
+    <header>
+        <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>
+        <a class="cta" href="{{ url('CrudCategorieIndex') }}"> <button class="button-85" role="button">Dashboard All Categorie</button> </a>
+        <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a>
+    </header>
+
+    <section id="quizz" >
+        <h1 style="text-align:center" class="section_title"> Edit categorie </h1>
+        <div class="images">
+            {{ form(form) }}
+        </div>
+        </br>
+        </br>
+        <h2>Ajouter une question</h2>
+        <form method="post" action="{{  url('traitementCreationQuestion',{id:id_categorie}) }}">
+            <div>
+                <div>
+                    <label for="question">Question</label>
+                    <input type="text" id="question" name="question"  />
+                </div>
+                <div>
+                    {% for x in 1..3 %}
+                        <label for="reponse_{{ x }}">Reponse {{ x }}</label>
+                        <input type="text" id="reponse_{{ x }}" name="reponse_{{ x }}"  />
+                    {% endfor %}
+                    </br>
+                </div>
+            </div>
+            <button  type="submit">Creer le quiz</button>
+        </form>
+        </br>
+        </br>
+        <ul style="margin-left: 5rem">
+            {% for question in questions%}
+                <li>
+                    <span> {{question.question}}</span>
+                    <a href="{{ url('editQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button>Update Question</button></a>
+                    <a href="{{ url('deleteQuestion', {id : question.id} )}}"><button>Delete Question</button></a>
+                </li>
+                </br>
+            {% endfor %}
+        </ul>
+    </section>
+
+{% endblock %}

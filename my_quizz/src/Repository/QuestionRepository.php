@@ -16,6 +16,14 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function deleteAllReponse(int $id_question) : void
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'DELETE FROM reponse WHERE id_question = :id_question';
+        $conn->executeQuery($sql, ['id_question' => $id_question]);
+
+    }
+
     //    /**
     //     * @return Question[] Returns an array of Question objects
     //     */
