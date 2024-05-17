@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Admin dashboard Edit {% endblock %}
+{% block title %} Modifier un questionnaire {% endblock %}
 
 {% block stylesheets %}
 
@@ -8,6 +8,14 @@
 
 
 {% block body %}
+<style>
+    #quizz li a {
+    background-color: #fafaf9;
+    color: #fff;
+    padding: 5px 20px;
+    font-size: 15px;
+}
+</style>
 
     <header>
         <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>
@@ -16,7 +24,7 @@
     </header>
 
     <section id="quizz" >
-        <h1 style="text-align:center" class="section_title"> Edit categorie </h1>
+        <h1 style="text-align:center" class="section_title"> Modifier un questionnaire </h1>
         <div class="images">
             {{ form(form) }}
         </div>

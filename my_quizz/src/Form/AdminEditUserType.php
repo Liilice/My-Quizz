@@ -32,7 +32,7 @@ class AdminEditUserType extends AbstractType
                 ],
             ])
             ->add('save', SubmitType::class, [
-                'label'=>'Update'
+                'label'=>'Modifier'
             ] )
         ;
     }
