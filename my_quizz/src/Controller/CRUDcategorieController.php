@@ -71,10 +71,9 @@ class CRUDcategorieController extends AbstractController
         return $this->redirectToRoute('CrudCategorieIndex');
     }
 
-    #[Route('/traitementCreationQuiz/{id}', name: 'traitementCreationQuiz')]
-    public function creerQuizz(Request $request, EntityManagerInterface $entityManager, int $id)
+    #[Route('/traitementCreationQuiz', name: 'traitementCreationQuiz')]
+    public function creerQuizz(Request $request, EntityManagerInterface $entityManager)
     {
-        dd($id);
         $formData = $request->request->all();
         $categorie = new Categorie();
         $categorie->setName($formData['name']);
