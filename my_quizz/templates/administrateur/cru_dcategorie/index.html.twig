@@ -30,11 +30,25 @@
 }
 </style>
 
-    <header>
-        <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>
-        <a class="cta" href="{{ url('app_administrateur') }}"> <button class="button-85" role="button">Dashboard Admin</button> </a>
-        <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a>
-    </header>
+<header>
+<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+<ul class="nav_links">
+<a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
+</nav> 
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+{% if is_granted('ROLE_ADMIN') %}
+        <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+    {% endif %}
+    
+    <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
+{% else %}
+    <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a> 
+    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
+{% endif %}
+
+</header>
 
     <section id="quizz">
         <h1 style="text-align:center" class="section_title" id="title"> Gestionnaire de quizz </h1>
