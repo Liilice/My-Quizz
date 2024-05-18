@@ -46,7 +46,7 @@
                 <li>
                     <span> {{question.question}}</span>
                     <a href="{{ url('editQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button>Update Question</button></a>
-                    <a href="{{ url('deleteQuestion', {id : question.id} )}}"><button>Delete Question</button></a>
+                    <a href="{{ url('deleteQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button>Delete Question</button></a>
                 </li>
                 </br>
             {% endfor %}

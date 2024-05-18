@@ -175,8 +175,8 @@ header {
 }
 
 #quizz li a {
-  background-color: #ea1f33;
-  color: #fff;
+  /*background-color: #ea1f33;*/
+  color: black;
   padding: 5px 20px;
   font-size: 15px;
 }

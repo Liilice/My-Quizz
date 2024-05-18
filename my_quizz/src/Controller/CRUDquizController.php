@@ -27,8 +27,8 @@ class CRUDquizController extends AbstractController
         return $this->render('administrateur/cru_dquiz/editQuestion.html.twig', ['id'=>$id,'form'=>$form]);
     }
 
-    #[Route('/administrateur/c/r/u/dquiz/deleteQuestion', name: 'deleteQuestion')]
-    public function deleteQuestion(Question $question, EntityManagerInterface $entityManager): Response
+    #[Route('/administrateur/c/r/u/dquiz/deleteQuestion/{id}', name: 'deleteQuestion')]
+    public function deleteQuestion(Question $question, EntityManagerInterface $entityManager, int $id): Response
     {
         $entityManager->getRepository(Question::class)->deleteAllReponse($id);
         $entityManager->remove($question);
