@@ -25,8 +25,8 @@ class QuizzPassedRepository extends ServiceEntityRepository
     //    /**
     //     * @return QuizzPassed[] Returns an array of QuizzPassed objects
     //     */
-       public function findQuizzPassedByUser(int $id_user): array
-       {
+    public function findQuizzPassedByUser(int $id_user): array
+    {
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = 'SELECT * FROM quizz_passed WHERE quizz_passed.user_id = :id_user';
@@ -35,7 +35,16 @@ class QuizzPassedRepository extends ServiceEntityRepository
 
         return $resultSet->fetchAllAssociative();
 
-       }
+    }
+
+    public function findAllUserPassed(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT user_id FROM quizz_passed group by user_id';
+        $resultSet = $conn->executeQuery($sql);
+        return $resultSet->fetchAll();
+
+    }
 
     //    public function findOneBySomeField($value): ?QuizzPassed
     //    {
