@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\LastLogin;
 use App\Entity\Categorie;
 use App\Entity\Question;
 use App\Entity\Reponse;
@@ -20,6 +21,7 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use App\Security\EmailVerifier;
 use Symfony\Component\Mime\Address;
 use App\Security\AppAuthenticator;
+use DateTime;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 
@@ -30,11 +32,18 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted(attribute: "IS_AUTHENTICATED_FULLY");
         /** @var User $user */
         $user = $this->getUser();
+        $login = new LastLogin();
+        $login->setUser($this->getUser());
+        $now = new DateTime();
+        $now->format("Y-m-d H:i:s");
+        $login->setDate($now);
+        $entityManager->persist($login);
+        $entityManager->flush();
         return match ($user->isVerified()){
             true => $this->redirectToRoute('home'),
             false => $this->render('admin/please-verify-email.html.twig'),
