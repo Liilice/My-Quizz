@@ -21,7 +21,6 @@ class HomeController extends AbstractController {
 
     #[Route("/historique",name : "historique.show")]
     public function showHistory(Request $request, EntityManagerInterface $entityManager): Response{
-        $array=$request->cookies->all();
         $result = [];
         if($this->getUser()){
             $user_id = $this->getUser()->getId();
@@ -34,14 +33,12 @@ class HomeController extends AbstractController {
                         $result[$name] =$value['note'];
                     }
                 }else{
-
                     $name = $arrayQuizzPassByUser[0]['categorie_name'];
                     $result[$name] = $arrayQuizzPassByUser[0]['note'];
                 }
             }
         }else{
             $array=$request->cookies->all();
-            $result = [];
             foreach($array as $key=>$value){
                 $cookie_value = urldecode($key);
                 if($key != "PHPSESSID"){

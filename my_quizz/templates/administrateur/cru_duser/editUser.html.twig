@@ -21,7 +21,17 @@
         {{ form(form) }}
         </br>
         </br>
-        {{ form(formSetAdmin) }}
+        {% if(user.roles[0] == "ROLE_ADMIN") %}
+            {{ form(formSetUser) }}
+        {% else %}
+            {{ form(formSetAdmin) }}
+        {% endif %}
+        </br>
+        </br>
+        {% if(user.isVerified == true) %}
+        {% else %}
+            <a href="{{ url('setVerify', {id : user.id} ) }}">Compte verifier</a>
+        {% endif %}
     </div>
 </section>
 
