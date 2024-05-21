@@ -3,18 +3,30 @@
 {% block title %}Hello StatsUserController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<header>
+<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+<ul class="nav_links">
+<a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
+</nav> 
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+    {% endif %}
+    <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
+{% else %}
+    <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a> 
+    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
+{% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+</header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/yohantov/Epitech/W-PHP-502-PAR-2-1-Quiz-henry.alexandre-dos-santos/my_quizz/src/Controller/StatsUserController.php</code></li>
-        <li>Your template at <code>/Users/yohantov/Epitech/W-PHP-502-PAR-2-1-Quiz-henry.alexandre-dos-santos/my_quizz/templates/stats_user/index.html.twig</code></li>
-    </ul>
-</div>
+<span>{{categorie.name}}</span>
+
+
+
+
+
+
 {% endblock %}
