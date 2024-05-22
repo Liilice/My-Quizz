@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Entity\Question;
 use App\Entity\Reponse;
 use App\Form\AdminAddCategorieType;
+use App\Form\AdminAddQuestionType;
 use App\Form\AdminEditCategorieType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +52,15 @@ class CRUDcategorieController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('CrudCategorieIndex');
         }
-        return $this->render('administrateur/cru_dcategorie/editCategorie.html.twig', ['id'=>$id, 'form'=>$form, 'questions'=>$questions]);
+
+        // $newQuestion = new Question();
+        // $formAddQuestion = $this->createForm(AdminAddQuestionType::class, $newQuestion);
+        // if($formAddQuestion->isSubmitted() && $formAddQuestion->isValid()){
+        //     $newQuestion->setQuestion($form->get('question')->getData());
+        //     $entityManager->persist($categorie);
+        //     $entityManager->flush();
+        // }
+        return $this->render('administrateur/cru_dcategorie/editCategorie.html.twig', ['id_categorie'=>$id, 'form'=>$form, 'questions'=>$questions]);
     }
 
     #[Route('/administrateur/c/r/u/dcategorie/deleteCategorie/{id}', name: 'deleteCategorie')]

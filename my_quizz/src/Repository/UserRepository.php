@@ -41,10 +41,29 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->orderBy('u.email', 'ASC')
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
 
-   
+    public function findUserById(int $id): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findUserNotInParameter(array $ids): array
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.id NOT IN (:id)')
+            ->setParameter('id', $ids)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
     //    public function findOneBySomeField($value): ?User
     //    {
