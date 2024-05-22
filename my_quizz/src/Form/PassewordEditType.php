@@ -32,7 +32,7 @@ class PassewordEditType extends AbstractType
                 ],
             ])
             ->add('save', SubmitType::class, [
-                'label'=>'modifier'
+                'label'=>' Modifier'
             ])
         ;
     }

@@ -8,7 +8,12 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<header>
+    <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button"> Se reconnecter </button> </a> 
+</header>
+
 <div class="example-wrapper">
-    <p>Veuillez regarder vos mail pour valider le nouveau email</p>
+    <p> Un lien de vérification a été envoyez à votre nouvelle adresse, veuillez la confirmer. </p>
 </div>
 {% endblock %}
