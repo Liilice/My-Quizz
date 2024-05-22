@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Statistiques {% endblock %}
+
+{% block body %}
+<style>
+    
+    .container{text-align: center;}
+    .end{padding-bottom: 20px;}
+
+    </style>
+<header>
+<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+<ul class="nav_links">
+<a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
+</nav> 
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+    {% endif %}
+    <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
+{% else %}
+    <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a> 
+    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
+{% endif %}
+
+</header>
+
+<h1 style="text-align: center; padding-bottom : 20px; padding-top : 20px;"> Statistiques </h1>
+<div class="container">
+                                                        <!-- HARRY POTTER -->
+{% if averagePoints is not null %}
+<p> Notes moyennes obtenues au quizz Harry Potter : {{ averagePoints }} <br> </p>
+{% else %}
+<p> Notes moyennes obtenues au quizz Sigles Français :  Pas assez de données. <br> </p>
+{% endif %}
+
+{% if totalUsers is not null %}
+<p class="end"> Nombre de personnes ayant participer au quizz Harry potter : {{ totalUsers }} <br>  </p>
+{% else %}
+<p class="end"> Nombre de personnes ayant participer au quizz Sigles Français :  Pas assez de données. <br>  </p>
+
+{% endif %}
+
+                                                <!-- SIGLES FRANCAIS -->
+    {% if averagePointsSigles is not null %}
+    <p> Notes moyennes obtenues au quizz Sigles Français : {{ averagePointsSigles }} <br> </p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Sigles Français :  Pas assez de données.  <br></p>
+    {% endif %}
+
+    {% if totalUsersSigles is not null %}
+    <p class="end">   Nombre de personnes ayant participer au quizz Sigles Français : {{ totalUsersSigles }}  <br></p>
+    {% else %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Sigles Français :  Pas assez de données.  <br></p>
+
+    {% endif %}
+
+                                                <!-- DEFINITION DE MOTS -->
+    {% if averagePointDefinition is not null %}
+    <p> Notes moyennes obtenues au quizz Définitions de mots : {{ averagePointDefinition }} <br> </p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Définitions de mots :  Pas assez de données. <br> </p>
+    {% endif %}
+
+    {% if totalUsersDefinition is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Définitions de mots : {{ totalUsersDefinition }}  <br></p>
+    {% else %}
+    <p class="end">class="end"> Nombre de personnes ayant participer au quizz Définitions de mots :  Pas assez de données. <br> </p>
+    {% endif %}
+
+                                                <!-- SPECIALITE CULINAIRES -->
+
+    {% if averagePointSpecialite is not null %}
+    <p> Notes moyennes obtenues au quizz Spécialités culinaires : {{ averagePointSpecialite }}  <br></p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Spécialités culinaires :  Pas assez de données. <br> </p>
+    {% endif %}
+
+    {% if totalUsersSpecialite is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Spécialités culinaires : {{ totalUsersSpecialite }}  <br></p>
+    {% else %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Spécialités culinaires :  Pas assez de données.  <br></p>
+    {% endif %}
+
+                                                <!-- SERIES TV : Les simpson -->
+    {% if averagePointsSimpson is not null %}
+    <p> Notes moyennes obtenues au quizz Séries TV : les simpson : {{ averagePointsSimpson }}  <br></p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Séries TV : les simpson :  Pas assez de données. <br> </p>
+    {% endif %}
+
+    {% if totalUsersSimpson is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Séries TV : les simpson : {{ totalUsersSimpson }} <br> </p>
+    {% else %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Séries TV : les simpson :  Pas assez de données. <br></p>
+    {% endif %}
+
+                                                <!-- Séries TV : Stargate SG1 -->
+
+    {% if averagePointsStargate is not null %}
+    <p> Notes moyennes obtenues au quizz Séries TV : Stargate SG1 : {{ averagePointsStargate }}  <br></p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Séries TV : Stargate SG1 :  Pas assez de données. <br></p>
+    {% endif %}
+
+    {% if totalUsersStargate is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Séries TV : Stargate SG1 : {{ totalUsersStargate }} <br></p>
+    {% else %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Séries TV : Stargate SG1 :  Pas assez de données. <br> </p>
+    {% endif %}
+
+                                                <!-- Séries TV : NCIS -->
+
+    {% if averagePointsNcis is not null %}
+    <p> Notes moyennes obtenues au quizz Séries TV : NCIS : {{ averagePointsNcis }} <br> </p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Séries TV : NCIS :  Pas assez de données. <br></p>
+    {% endif %}
+
+    {% if totalUsersNcis is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Séries TV : NCIS : {{ totalUsersNcis }}  <br></p>
+    {% else %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Séries TV : NCIS :  Pas assez de données. <br> </p>
+    {% endif %}
+
+                                                <!-- Jeux de société -->
+
+    {% if averagePointsJeux is not null %}
+    <p> Notes moyennes obtenues au quizz Jeux de société : {{ averagePointsJeux }}  <br></p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Jeux de société :  Pas assez de données.  <br></p>
+    {% endif %}
+
+    {% if totalUsersJeux is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Jeux de société : {{ totalUsersJeux }} <br> </p>
+    {% else %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Jeux de société :  Pas assez de données.  <br></p>
+    {% endif %}
+
+                                                <!-- Programmation -->
+    
+    {% if averagePointsProgrammation is not null %}
+    <p> Notes moyennes obtenues au quizz Programmation : {{ averagePointsProgrammation }} <br> </p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Programmation :  Pas assez de données. <br></p>
+    {% endif %}
+
+    {% if totalUsersProgrammation is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Programmation : {{ totalUsersProgrammation }}  <br></p>
+    {% else %}
+    <p class="end">Nombre de personnes ayant participer au quizz Programmation :  Pas assez de données.  <br></p>
+    {% endif %}
+
+                                                <!-- Sigles informatiques -->
+    
+    {% if averagePointsInformatique is not null %}
+    <p> Notes moyennes obtenues au quizz Sigles informatiques : {{ averagePointsInformatique }} <br> </p>
+    {% else %}
+    <p> Notes moyennes obtenues au quizz Sigles informatiques :  Pas assez de données. <br></p>
+    {% endif %}
+
+    {% if totalUsersInformatique is not null %}
+    <p class="end"> Nombre de personnes ayant participer au quizz Sigles informatiques : {{ totalUsersInformatique }} <br> </p>
+    {% else %}
+    <p class="end">Nombre de personnes ayant participer au quizz Sigles informatiques :  Pas assez de données. <br> </p>
+    {% endif %}
+</div>
+{% endblock %}
