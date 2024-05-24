@@ -24,13 +24,14 @@ class QuizzController extends AbstractController
     #[Route('/quizz/{id}', name: 'quizz.show')]
     public function index(EntityManagerInterface $entityManager, int $id): Response
     {
+        $categorieName = $entityManager->getRepository(Categorie::class)->findNameCategorie($id);
         $questions = $entityManager->getRepository(Question::class)->findAllByIdCategorie($id);
         $arrayReponse = [];
         foreach ($questions as $question) {
             $questionId = $question->getId();
             $arrayReponse[] = [$question,$entityManager->getRepository(Reponse::class)->findAllByIdQuestion($questionId)];
         }
-        return $this->render('quizz/show.html.twig', ['arrayReponse'=>$arrayReponse, "id"=>$id]);
+        return $this->render('quizz/show.html.twig', ['arrayReponse'=>$arrayReponse, "id"=>$id, 'name'=>$categorieName[0]->getName()]);
     }
 
     #[Route('/traitementReponse/{id}', name: 'traitementReponse')]

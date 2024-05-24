@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Historique quizz {% endblock %}
+{% block title %} Historique des quizz {% endblock %}
 
 {% block stylesheets %}
 
@@ -9,10 +9,33 @@
 
 {% block body %}
 
+<style>
+    .histo ul { display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom : 20px; }
+    .histo { margin: 20px auto; padding: 0 8%; }
+    li { padding: 5px } 
+    #title{
+    font-size: 7vh;
+    padding-top: 20px;
+    text-align: center;
+    color: #e76f51;
+}
+
+</style>
+
 <header>
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
     
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+        <a class="cta" href="{{ path('app_quizz') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+        {% endif %}
         <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
     {% else %}
     <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a> 
@@ -20,11 +43,11 @@
     {% endif %}
 </header>
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title"> Historique des quizz effectués : </h1>
-<div class="images">
+    <h1 style="text-align:center" class="section_title" id="title"> Historique des quizz effectués  </h1>
+<div class="histo">
     <ul>
         {% for key, value in result%}
-            <li>{{ (key) }}: {{ value }}</li>
+            <li>{{ (key) }} : {{ value }}</li>
         {% endfor %} 
     </ul>
 </div>

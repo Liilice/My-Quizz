@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Profil Setting {% endblock %}
+{% block title %} Paramètres du profil {% endblock %}
 
 {% block stylesheets %}
 
@@ -9,6 +9,30 @@
 
 {% block body %}
 
+<style>
+    #title{
+    font-size: 7vh;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #e76f51;
+}
+
+    .gestion { display: flex;
+    flex-direction: column;
+    align-items: center; } 
+
+    #dofus { margin-bottom : 10px} 
+
+    button { margin : 17px } 
+    #passeword_edit > div:nth-child(1) > label { margin-right : 10px }
+    #email_edit > div:nth-child(1) > label { margin-right : 10px }
+    #passeword_edit > div:nth-child(1) { margin-bottom : 10px} 
+    #passeword_edit > div:nth-child(2) { margin-left : 45px }
+    #email_edit_save { margin-top : 10px; margin-left : 35px}
+
+    </style>
+
 <header>
     <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
 <nav> 
@@ -16,21 +40,23 @@
     <a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
 </nav> 
     <a class="cta" href="{{ path('app_quizz') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a> 
+    {% if is_granted('ROLE_ADMIN') %}
+            <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+    {% endif %}
     <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a>  
 </header>
 
 <section id="quizz">
-    <h1 style="text-align:center" class="section_title">  Paramètres </h1>
-<div class="images">
-    <h1> Hello {{ app.user.email }} ! </h1>
+    <h1 style="text-align:center" class="section_title" id="title">  Paramètres </h1>
+<div class="gestion">
     </br>
     </br>
     {% include 'partials/flash.html.twig' %}
-    <h2 id="dofus"> Update Password </h2>
+    <h2 id="dofus"> Modifier le mot de passe </h2>
     {{ form(formPassword) }} 
     </br>
     </br>
-    <h2> Update email </h2>
+    <h2 id="dofus" > Modifier l'adresse e-mail </h2>
     {{ form(formEmail) }}
 </div>
 </section>

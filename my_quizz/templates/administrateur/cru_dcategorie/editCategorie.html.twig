@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Admin dashboard Edit {% endblock %}
+{% block title %} Modifier le questionnaire {% endblock %}
 
 {% block stylesheets %}
 
@@ -8,15 +8,59 @@
 
 
 {% block body %}
+<style>
+    #quizz li a {
+    background-color: #fafaf9;
+    color: #fff;
+    font-size: 15px;
+    padding : 5px;
+}
+    #title{
+    font-size: 7vh;
+    padding-top: 20px;
+    text-align: center;
+    color: #e76f51;
+}
+    #admin_edit_categorie {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-    <header>
-        <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>
-        <a class="cta" href="{{ url('CrudCategorieIndex') }}"> <button class="button-85" role="button">Dashboard All Categorie</button> </a>
-        <a class="cta" href="{{ path('app_logout') }}"> <button class="button-85" role="button">Deconnexion</button> </a>
-    </header>
+    #admin_edit_categorie > div:nth-child(1) {
+        margin-bottom: 10px}
+
+#admin_edit_categorie > div:nth-child(1) > label { 
+    padding-right: 7px;
+    font-weight: bold}
+    #admin_edit_categorie_save { background-color: #52BE80; }
+
+</style>
+
+
+<header>
+<a href="/"><img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo"/></a>  
+<nav> 
+<ul class="nav_links">
+<a href="{{ url('historique.show')}}"><button class="button-62" role="button">Historique</button> </a> 
+</nav> 
+{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+{% if is_granted('ROLE_ADMIN') %}
+        <a class="cta" href="{{ path('app_administrateur') }}"> <button class="button-62" role="button">Admin</button> </a> 
+    {% endif %}
+    <a class="cta" href="{{ path('app_quizz') }}"> <button class="button-85" role="button"> Créer un quizz </button> </a>
+    
+    <a class="cta" href="{{ path('profil') }}"> <button class="button-62" role="button">Mon compte</button> </a> 
+    <a class="cta" href="{{ path('app_logout') }}"> <button class="button-62" role="button">Deconnexion</button> </a> 
+{% else %}
+    <a class="cta" href="{{ path('app_register') }}"> <button class="button-62" role="button">S'inscrire</button> </a> 
+    <a class="cta" href="{{ path('app_login') }}"> <button class="button-62" role="button">Se connecter</button> </a> 
+{% endif %}
+
+</header>
 
     <section id="quizz" >
-        <h1 style="text-align:center" class="section_title"> Edit categorie </h1>
+        <h1 style="text-align:center" class="section_title" id="title"> Modifier le questionnaire </h1>
         <div class="images">
             {{ form(form) }}
         </div>

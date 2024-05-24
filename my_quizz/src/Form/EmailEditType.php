@@ -15,7 +15,7 @@ class EmailEditType extends AbstractType
         $builder
             ->add('email')
             ->add('save', SubmitType::class, [
-                'label'=>'modifier'
+                'label'=>'Modifier'
             ])
         ;
 

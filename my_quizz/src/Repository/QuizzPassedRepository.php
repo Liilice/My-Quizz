@@ -46,13 +46,22 @@ class QuizzPassedRepository extends ServiceEntityRepository
 
     }
 
-    //    public function findOneBySomeField($value): ?QuizzPassed
-    //    {
-    //        return $this->createQueryBuilder('q')
-    //            ->andWhere('q.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findSumCategorie(string $name)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT ROUND(AVG(NOTE), 2) as averagePoints from quizz_passed where categorie_name = :val';
+        $resultSet = $conn->executeQuery($sql, ['val'=>$name]);
+        $result = $resultSet->fetchAssociative();
+        return $result['averagePoints'] ?? null; 
+    }
+
+    public function findTotalUserForCategorie(string $name)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT COUNT(id) as totalUsers from quizz_passed where categorie_name = :val';
+        $resultSet = $conn->executeQuery($sql, ['val'=>$name]);
+        $result = $resultSet->fetchAssociative();
+        return $result['totalUsers'] ?? 0; 
+    }
+
 }
