@@ -6,16 +6,63 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .chart{
+        width : 600px;
+        width : 300px;
+        display: block;
+    }
+    .bars{
+        color : black;
+        font-size: 12px;
+        font-weight:600;
+        margin : 0;
+        padding : 0;
+        display: inline-block;
+        width: 500px;
+        height:300px;
+        box-shadow : 0 0 10px 0 #555;
+        border-radius :5px;
+    }
+    .bars li {
+        display: table-cell;
+        width:100px;
+        height:300px;
+        position : relative;
+    }
+    .bars span {
+        width : 100%;
+        position: absolute;
+        bottom: -30px;
+        text-align : center;
+    }
+    .bars .bar {
+       display: block;
+       background: #17C0EB;
+       width:50px;
+       position:absolute;
+       bottom:0;
+       margin-left: 25px;
+       text-align : center;
+       box-shadow: 0 0 10px 0 rgba(23, 192, 235, 0.5);
+    }
+
+    .bars .bar:before{
+        color:black;
+        content: attr(data-pourcentage);
+        position:relative;
+        bottom: 20px;
+    }
 </style>
-
 <div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-    {{ render_chart(chart) }}
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/whitewolf/Projet/my_quiz/W-PHP-502-PAR-2-1-Quiz-henry.alexandre-dos-santos/my_quizz/src/Controller/StatGraphController.php</code></li>
-        <li>Your template at <code>/home/whitewolf/Projet/my_quiz/W-PHP-502-PAR-2-1-Quiz-henry.alexandre-dos-santos/my_quizz/templates/stat_graph/index.html.twig</code></li>
-    </ul>
+    <p>Graphique sur le nombres de quiz passer par les utilisateurs en bleu</p>
+    </br>
+    <div class="chart">
+        <ul class="bars">
+            <li><div class="bar" style="height: {{countYear}}%;" data-pourcentage="{{countYear}}"></div><span>année</span></li>
+            <li><div class="bar" style="height: {{countMonth}}%;" data-pourcentage="{{countMonth}}"></div><span>mois</span></li>
+            <li><div class="bar" style="height: {{countWeek}}%;" data-pourcentage="{{countWeek}}"></div><span>semaine</span></li>
+            <li><div class="bar" style="height: {{countHours}}%;" data-pourcentage="{{countHours}}"></div><span>24 heures</span></li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
