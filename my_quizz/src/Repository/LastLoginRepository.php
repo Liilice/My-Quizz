@@ -40,6 +40,17 @@ class LastLoginRepository extends ServiceEntityRepository
                ;
        }
 
+       public function findNumberOfUserLogin($start,$end)
+    {
+         return $this->createQueryBuilder('l')
+             ->select('COUNT(l.id)')
+             ->where('l.date BETWEEN :start AND :end')
+             ->setParameter('start', $start)
+             ->setParameter('end', $end)
+             ->getQuery()
+             ->getResult();
+    }
+
     //    public function findOneBySomeField($value): ?LastLogin
     //    {
     //        return $this->createQueryBuilder('l')
