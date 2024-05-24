@@ -18,7 +18,7 @@
         margin : 0;
         padding : 0;
         display: inline-block;
-        width: 500px;
+        width: 800px;
         height:300px;
         box-shadow : 0 0 10px 0 #555;
         border-radius :5px;
@@ -45,8 +45,33 @@
        text-align : center;
        box-shadow: 0 0 10px 0 rgba(23, 192, 235, 0.5);
     }
-
+    .bleu{
+        color: #17C0EB;
+        font-weight : bold;
+        font-style: italic;
+    }
+    .bars .barUser{
+        display: block;
+       background: #f39c12;
+       width:50px;
+       position:absolute;
+       bottom:0;
+       margin-left: 25px;
+       text-align : center;
+       box-shadow: 0 0 10px 0 rgba(23, 192, 235, 0.5);
+    }
+    .orange{
+        color: #f39c12;
+        font-weight : bold;
+        font-style: italic;
+    }
     .bars .bar:before{
+        color:black;
+        content: attr(data-pourcentage);
+        position:relative;
+        bottom: 20px;
+    }
+    .bars .barUser:before{
         color:black;
         content: attr(data-pourcentage);
         position:relative;
@@ -54,14 +79,22 @@
     }
 </style>
 <div class="example-wrapper">
-    <p>Graphique sur le nombres de quiz passer par les utilisateurs en bleu</p>
+    <p class="bleu">Graphique sur le nombres de quiz passer par les utilisateurs</p>
+    <p class="orange">Graphique sur le nombres d'utilisateurs connecter</p>
     </br>
     <div class="chart">
         <ul class="bars">
             <li><div class="bar" style="height: {{countYear}}%;" data-pourcentage="{{countYear}}"></div><span>année</span></li>
+            <li><div class="barUser" style="height: {{countUserYear}}%;" data-pourcentage="{{countUserYear}}"></div><span>année</span></li>
+
             <li><div class="bar" style="height: {{countMonth}}%;" data-pourcentage="{{countMonth}}"></div><span>mois</span></li>
+            <li><div class="barUser" style="height: {{countUserMonth}}%;" data-pourcentage="{{countUserMonth}}"></div><span>mois</span></li>
+
             <li><div class="bar" style="height: {{countWeek}}%;" data-pourcentage="{{countWeek}}"></div><span>semaine</span></li>
+            <li><div class="barUser" style="height: {{countUserWeek}}%;" data-pourcentage="{{countUserWeek}}"></div><span>semaine</span></li>
+
             <li><div class="bar" style="height: {{countHours}}%;" data-pourcentage="{{countHours}}"></div><span>24 heures</span></li>
+            <li><div class="barUser" style="height: {{countUserHours}}%;" data-pourcentage="{{countUserHours}}"></div><span>24 heures</span></li>
         </ul>
     </div>
 </div>
