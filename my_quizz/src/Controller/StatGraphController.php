@@ -5,45 +5,34 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
-use Symfony\UX\Chartjs\Model\Chart;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\QuizzPassed;
 
 class StatGraphController extends AbstractController
 {
-    // #[Route('/stat/graph', name: 'app_stat_graph')]
-    // public function index(ChartBuilderInterface  $chartBuilder): Response
-    // {
-    //     $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
-
-    //     $chart->setData([
-    //         'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    //         'datasets' => [
-    //             [
-    //                 'label' => 'My First dataset',
-    //                 'backgroundColor' => 'rgb(255, 99, 132)',
-    //                 'borderColor' => 'rgb(255, 99, 132)',
-    //                 'data' => [0, 10, 5, 2, 20, 30, 45],
-    //             ],
-    //         ],
-    //     ]);
-
-    //     $chart->setOptions([
-    //         'scales' => [
-    //             'y' => [
-    //                 'suggestedMin' => 0,
-    //                 'suggestedMax' => 100,
-    //             ],
-    //         ],
-    //     ]);
-    //     return $this->render('stat_graph/index.html.twig', [
-    //         'chart' => $chart,
-    //     ]);
-    // }
-
     #[Route('/stat/graph', name: 'app_stat_graph')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-       
-        return $this->render('stat_graph/index.html.twig');
+        $now = new DateTime();
+        $nowForHours = new DateTime();
+        $nowForWeek = new DateTime();
+        $nowForMonth = new DateTime();
+        $nowForYear = new DateTime();
+        $last24Hours = $nowForHours->modify('-24 hours');
+        $lastWeek = $nowForWeek->modify('-1 week');
+        $lastMonth = $nowForMonth->modify('-1 month');
+        $lastYear = $nowForYear->modify('-1 year');
+
+        $countHours = $entityManager->getRepository(QuizzPassed::class)->findNumberOfQuizTaken($last24Hours, $now);
+        $countWeek = $entityManager->getRepository(QuizzPassed::class)->findNumberOfQuizTaken($lastWeek, $now);
+        $countMonth = $entityManager->getRepository(QuizzPassed::class)->findNumberOfQuizTaken($lastMonth, $now);
+        $countYear =$entityManager->getRepository(QuizzPassed::class)->findNumberOfQuizTaken($lastYear, $now);
+        return $this->render('stat_graph/index.html.twig', [
+            'countYear'=>$countYear[0][1],
+            'countMonth'=>$countMonth[0][1],
+            'countWeek'=>$countWeek[0][1],
+            'countHours'=>$countHours[0][1],
+        ]);
     }
 }

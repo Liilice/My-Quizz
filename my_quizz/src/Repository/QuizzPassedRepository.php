@@ -63,5 +63,15 @@ class QuizzPassedRepository extends ServiceEntityRepository
         $result = $resultSet->fetchAssociative();
         return $result['totalUsers'] ?? 0; 
     }
-
+    
+    public function findNumberOfQuizTaken($start,$end)
+    {
+         return $this->createQueryBuilder('q')
+             ->select('COUNT(q.id)')
+             ->where('q.passed_time BETWEEN :start AND :end')
+             ->setParameter('start', $start)
+             ->setParameter('end', $end)
+             ->getQuery()
+             ->getResult();
+    }
 }
