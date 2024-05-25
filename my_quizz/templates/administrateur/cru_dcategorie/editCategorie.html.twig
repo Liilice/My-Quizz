@@ -35,6 +35,8 @@
     font-weight: bold}
     #admin_edit_categorie_save { background-color: #52BE80; }
 
+    .addquestion{display: flex; align-items: center; flex-direction: column;}
+    .sous{margin-bottom : 20px; color: #e76f51;}
 </style>
 
 
@@ -66,11 +68,12 @@
         </div>
         </br>
         </br>
-        <h2>Ajouter une question</h2>
+        <div class="addquestion">
+        <h2 class="sous">Ajouter une question</h2>
         <form method="post" action="{{  url('traitementCreationQuestion',{id:id_categorie}) }}">
             <div>
-                <div>
-                    <label for="question">Question</label>
+                <div style="text-align: center; margin-bottom : 10px;">
+                    <label for="question" style="text-align: center">Question</label>
                     <input type="text" id="question" name="question"  />
                 </div>
                 <div>
@@ -81,16 +84,19 @@
                     </br>
                 </div>
             </div>
-            <button  type="submit">Creer le quiz</button>
+            <div style="text-align: center; margin-top: 10px;">
+            <button  type="submit" style="background-color: #52BE80"> Ajouter </button>
+        </div>
         </form>
+    </div>
         </br>
         </br>
         <ul style="margin-left: 5rem">
             {% for question in questions%}
                 <li>
                     <span> {{question.question}}</span>
-                    <a href="{{ url('editQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button>Update Question</button></a>
-                    <a href="{{ url('deleteQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button>Delete Question</button></a>
+                    <a href="{{ url('editQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button> Modifier </button></a>
+                    <a href="{{ url('deleteQuestion', {id : question.id, id_categorie : id_categorie} )}}"><button> Supprimer </button></a>
                 </li>
                 </br>
             {% endfor %}

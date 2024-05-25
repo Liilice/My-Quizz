@@ -7,6 +7,7 @@
     
     .container{text-align: center;}
     .end{padding-bottom: 20px;}
+    .note{font-weight: bold;}
 
     </style>
 <header>
@@ -28,20 +29,20 @@
 
 </header>
 
-<h1 style="text-align: center; padding-bottom : 20px; padding-top : 20px;"> Statistiques </h1>
+<h1 style="text-align: center; padding-bottom : 20px; padding-top : 20px; color: #e76f51;"> Statistiques </h1>
 <div class="container">
 
     <ul>
         {% for key, value in array%}
             <li>
                 {% if(value[0] == null) %}
-                    <span>Moyennes obtenues au quizz {{ (key) }} : Pas assez de données</span> 
+                    <span> Moyennes obtenues au quizz <span class="note"> {{ (key) }} </span> : Pas assez de données</span> 
                     </br>
                 {% else %}
-                    <span>Moyennes obtenues au quizz {{ (key) }} : {{value[0]}}</span> 
+                    <span>Moyennes obtenues au quizz <span class="note"> {{ (key) }} </span> : {{value[0]}}/10 </span> 
                     </br>
                 {% endif%}
-                <span> Nombre de personnes ayant participer au quizz {{ (key) }} : {{value[1]}}</span> 
+                <span> Nombre de personnes ayant participer au quizz : {{value[1]}}</span> 
                 </br>
             </li>
             </br>
