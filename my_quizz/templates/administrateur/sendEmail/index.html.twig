@@ -15,22 +15,22 @@
     </header>
 
     <section id="quizz">
-        <h1 style="text-align:center" class="section_title"> Fonctionnalité envoie des mails aux utilisateurs</h1>
+        <h1 style="text-align:center" class="section_title"> Envoie de mails aux utilisateurs </h1>
         <div class="images">
-            <h1>Hello {{ app.user.email }}</h1>
+            
             </br>
             {% include 'partials/flash.html.twig' %}
             </br>
-            <a class="cta" href="{{ url('passOneOrManyQuiz') }}"> <button class="button-85" role="button">Qui ont passé un ou plusieurs quiz en particulier.</button> </a>
+            <a class="cta" href="{{ url('passOneOrManyQuiz') }}"> <button class="button-32" role="button">Qui ont passé un ou plusieurs quiz en particulier.</button> </a>
             </br>
             </br>
-            <a class="cta" href="{{ url('notPassOneOrManyQuiz') }}"> <button class="button-85" role="button">Qui n’ont pas passé un ou plusieurs quiz en particulier.</button> </a>
+            <a class="cta" href="{{ url('notPassOneOrManyQuiz') }}"> <button class="button-32" role="button">Qui n’ont pas passé un ou plusieurs quiz en particulier.</button> </a>
             </br>
             </br>
-            <a class="cta" href="{{ url('loginInOneMonth') }}"> <button class="button-85" role="button">Qui se sont connecté au moins une fois depuis 1 mois.</button> </a>
+            <a class="cta" href="{{ url('loginInOneMonth') }}"> <button class="button-32" role="button">Qui se sont connecté au moins une fois depuis 1 mois.</button> </a>
             </br>
             </br>
-            <a class="cta" href="{{ url('notLoginInOneMonth') }}"> <button class="button-85" role="button">Qui ne se sont pas connecté au moins une fois depuis 1 mois.</button> </a>
+            <a class="cta" href="{{ url('notLoginInOneMonth') }}"> <button class="button-32" role="button">Qui ne se sont pas connecté au moins une fois depuis 1 mois.</button> </a>
         </div>
     </section>
 
