@@ -15,8 +15,8 @@ Suivez les étapes ci-dessous pour installer et lancer le projet My Quizz :
 
 ### 1. Cloner le Répertoire du Projet
 ```bash
-git@github.com:Liilice/My-Quizz.git
-cd quizmaster
+git clone git@github.com:Liilice/My-Quizz.git
+cd My-Quizz
 ```
 
 ### 2. Installer les Dépendances
